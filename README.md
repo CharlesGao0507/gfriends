@@ -1,15 +1,26 @@
 # 女友头像仓库
-![TotalNumber](https://img.shields.io/badge/TotalNum-3.08w-Blue.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2020--6--21-green.svg)<br>
-媒体服务器演员头像仓库<br>推荐搭配任一刮削整理项目 [JAVSDT](https://github.com/junerain123/javsdt "JAVSDT")、[JAVOneStop](https://github.com/ddd354/JAVOneStop "JAVOneStop")、[AVDC](https://github.com/yoshiko2/AV_Data_Capture "AV Data Capture")([GUI](https://github.com/moyy996/AVDC "AVDC GUI"))、[JavScraper](https://github.com/JavScraper/Emby.Plugins.JavScraper "JavScraper") 及 Emby、Jellyfin、Plex 等媒体服务器使用。
+![TotalNumber](https://img.shields.io/badge/TotalNum-3.09w-Blue.svg)  ![AutoUpdate](https://img.shields.io/badge/AutoUpdate-2020--9--22-green.svg)<br>
+媒体服务器演员头像仓库。<br>旨在满足数量需求前提下，尽可能收集和处理高质量女友头像，并提供导入媒体服务器方案。
 
-有关中国大陆地区相关部门开展 [净网2020](https://github.com/xinxin8816/gfriends#%E6%89%AB%E9%BB%84%E6%89%93%E9%9D%9E--%E5%87%80%E7%BD%912020) 专项行动的说明。
+## 目录
+* [快速开始](#快速开始)
+    * [Emby / Jellyfin](#emby--jellyfin)
+    * [Plex](#plex)
+* [进阶说明](#进阶说明)
+    * [导入本地头像图片到媒体服务器](#导入本地头像图片到媒体服务器)
+    * [上传新的头像图片到仓库](#上传新的头像图片到仓库)
+    * [共享头像图片来源网站](#共享头像图片来源网站)
+    * [对女友仓库的开发及调用](#对女友仓库的开发及调用)
+    * [仓库更新计划](#仓库更新计划)
+* [图片来源](#图片来源)
+* [法律信息](#法律信息及免责声明)
 
 ## 快速开始
 对于一般用户来说，可以通过以下方案导入头像。
 
 ### Emby / Jellyfin
 
-无需下载本仓库的女友头像，仅需下载 [Gfriends Inputer 一键导入工具](https://github.com/xinxin8816/gfriends/releases)，编辑 `Config.ini`文件并运行程序。<br>该工具将自动从本仓库搜索头像并导入你的服务器。
+无需下载本仓库的女友头像，仅需下载 [Gfriends Inputer 一键导入工具](https://github.com/xinxin8816/gfriends/releases)，编辑 `Config.ini` 文件并运行程序。<br>该工具将自动从本仓库搜索头像并导入你的服务器。
 
 <details>
 
@@ -28,33 +39,51 @@
 ## 进阶说明
 本项目以抓取官方高质量大图为主要目标，头像图片为自动化抓取，部分人工筛选。
 
-`Filetree.json` 为已按质量排序的文件树，可供程序调用搜索。女友仓库不能保证 AI 优化的图片完美无瑕，若您不想获取这些经 AI 优化的图片，只需删除文件树中的 `AI-Fix-` 前缀即可。
+推荐搭配任一刮削整理项目 [AVDC](https://github.com/yoshiko2/AV_Data_Capture "AV Data Capture")([GUI](https://github.com/moyy996/AVDC "AVDC GUI"))、[JavScraper](https://github.com/JavScraper/Emby.Plugins.JavScraper "JavScraper")、[JAVSDT](https://github.com/junerain123/javsdt "JAVSDT")、[JAVOneStop](https://github.com/ddd354/JAVOneStop "JAVOneStop")。
 
-### 上传新的演员图片
+### 导入本地头像图片到媒体服务器
+Gfriends Inputer 已支持导入本地头像到媒体服务器。
+
+导入工具首次启动时会自动创建 `Avatar` 文件夹（可在配置文件中修改）。将本地头像图片重命名为`演员姓名.jpg`，或将第三方头像包移动至该文件夹。此后，导入工具优先从该文件夹查找并导入头像，本地路径中不存在的则会尝试从本仓库搜索并导入。
+
+### 上传新的头像图片到仓库
 欢迎提交优质的演员头像图片或写真。以下条件应 **尽可能** 满足：
 
 1. 对应演员头像缺失或现有头像不堪入目。
 2. 新头像是以女友为主体的特写或近景、近似 3:2 的长宽比，且宽度宜在 300px 以上。
 
-如果您的图片符合上述要求，则可以：
+如果您的图片符合上述要求，则可以通过如下步骤上传图片：
 
-1. 移步至仓库的 [人工存储 HandStorage](https://github.com/xinxin8816/gfriends/tree/master/Content/0-Hand-Storage) 目录，该目录拥有最高优先级，能保证上传的图片被优先使用。
-2. 轻击 “Upload files” 按钮，然后上传图片到仓库。在上传等待过程中，随便写一点 “Commit Changes” 说明，比如上传了哪些女友的图片。
-3. 轻击 “Commit” 提交然后 “Pull Requests”。在经过审核后，您的美图就可以和大家分享了。
+1. 轻击主仓库右上角 “Fork” 按钮，然后会自动克隆主仓库，并跳转到属于您的个人仓库。
+2. 移步至个人仓库 “Content” 下的 “人工存储 HandStorage” 目录，该目录拥有最高优先级，能保证上传的图片被优先使用。
+3. 轻击 “Add files” 菜单下的 “Upload files” 按钮，然后上传图片到仓库。在上传等待过程中，随便写一点 “Commit Changes” 说明，比如上传了哪些女友的图片，然后轻击 “Commit” 提交。
+4. 进入 “Pull Requests” 发起新的合并请求，请同时勾选 “Allow edits by maintainers”。在经过审核后，您的美图就可以和大家分享了。
 
 此外，如果您有大量的图片想要上传，则最好使用 Git 命令，也可以提交一个 issue 求助。
 
-### 提交来源网站
+### 共享头像图片来源网站
 
 首先，该优质网站上的图片除了满足上述条件，还应尽可能满足：每位女友只有一张或少量的图片，以避免二次人工筛选。
 
 如果您有这样的来源网站，那就太完美了~ 您只需提交一个 issue 告诉我地址即可。
 
-### 更新计划
+### 对女友仓库的开发及调用
+请务必先阅读 [法律信息及免责声明](#%E6%B3%95%E5%BE%8B%E4%BF%A1%E6%81%AF%E5%8F%8A%E5%85%8D%E8%B4%A3%E5%A3%B0%E6%98%8E)
+
+1. `Filetree.json` 为 [内容 Content](https://github.com/xinxin8816/gfriends/tree/master/Content) 目录的 Json 文件树，在头像图片变化时将自动更新。该文件已按头像质量降序排列且已匹配多语言女友姓名，可供程序调用搜索。
+
+2. 女友仓库通过 AI 移除违法头像（基于中国大陆法律）至 [回收站 Recycled](https://github.com/xinxin8816/gfriends/tree/master/.Recycled) 目录，如果想调用该目录的头像请自行遍历。下述仓库镜像中不包含此回收站目录。
+
+3. 女友仓库通过 AI 放大并优化的低质量头像图片，但不能保证经优化的头像完美无瑕。若您不想调用获取到这些经 AI 优化的图片，只需删除文件树中的 `AI-Fix-` 前缀即可，仓库存储着未经 AI 处理的原始图片副本。
+
+4. 鉴于 GitHub 在全球网络中的连通性不一，此全球可达的仓库镜像供阁下备用：https://gfriends.imfast.io/
+
+### 仓库更新计划
 ✔ 自动定期抓取新入职女友头像至仓库（仅后述标注 🌟）<br>
 ✔ 匹配简体中文 / 繁体中文 / 日文姓名<br>
 ✔ 高斯模糊处理以匹配 Emby 的特殊尺寸（需使用 Gfriends Inputer 导入）<br>
-✔ AI 算法放大并优化低分辨率头像（仅后述标注 ➡）
+✔ AI 放大并优化低分辨率头像（仅后述标注 ➡）<br>
+✔ AI 鉴别并移除违法违规头像
 
 ## 图片来源
 排序不分前后<br>
@@ -100,11 +129,11 @@
 | [ラグジュTV](https://seesaawiki.jp/av_neme/d/%A5%E9%A5%B0%A5%B8%A5%E5TV/ "ラグジュTV") |116×236|900+|藤本ゆうり、美園和花、浜崎真緒、あやみ旬果|➡332×472|
 
 ## 扫黄打非 · 净网2020
-鉴于女友仓库目前受众多为中国大陆地区用户，为积极配合中国大陆地区相关部门开展专项行动，女友仓库将依托于 AI 算法，尽最大可能鉴别和删除违规头像。在此呼吁广大用户自觉守法、相互监督，共同打造绿色健康的网络环境。
+鉴于女友仓库目前受众多为中国大陆地区用户，为积极配合中国大陆地区相关部门开展专项行动，女友仓库将依托于 AI 技术，尽最大可能鉴别和删除违规头像。在此呼吁广大用户自觉守法、相互监督，共同打造绿色健康的网络环境。
 
 投诉邮箱：gfriends#qxin.uu.me
 
-## 免责声明
+## 法律信息及免责声明
 1. 本项目作者旨在学习 Python 后端，提高编程水平。
 2. 项目仅用于技术、学术交流，严禁用于商业和其他盈利目的。
 3. 请自觉遵守当地法律法规，产生的一切后果由用户自行承担。

@@ -18,10 +18,10 @@ jobs:
         os: [macos-latest, windows-latest, ubuntu-latest]
 
     steps:
-    - name: Set Up Python 3.7
-      uses: actions/setup-python@v1
+    - name: Set Up Python
+      uses: actions/setup-python@v2
       with:
-        python-version: 3.7
+        python-version: 3.8
 
     - name: Build For Windows
       if: matrix.os == 'windows-latest'
@@ -29,8 +29,11 @@ jobs:
         curl -O https://eternallybored.org/misc/wget/1.20.3/64/wget.exe #curl直接Py源码会失败
         ./wget.exe 'https://raw.githubusercontent.com/xinxin8816/gfriends/master/Gfriends Inputer.py'
         python -m pip install --upgrade pip
-        pip install alive-progress
+        pip install alive-progress==1.5.1
         pip install requests
+        pip install requests[socks]
+        pip install -U --force-reinstall gevent
+        pip install grequests
         pip install Pillow==7.1.1
         pip install pyinstaller
         pyinstaller -F 'Gfriends Inputer.py'
@@ -40,8 +43,11 @@ jobs:
       run: |
         wget 'https://raw.githubusercontent.com/xinxin8816/gfriends/master/Gfriends Inputer.py'
         python -m pip install --upgrade pip
-        pip install alive-progress
+        pip install alive-progress==1.5.1
         pip install requests
+        pip install requests[socks]
+        pip install -U --force-reinstall gevent
+        pip install grequests
         pip install Pillow==7.1.1
         pip install pyinstaller
         pyinstaller -F 'Gfriends Inputer.py'
